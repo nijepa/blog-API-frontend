@@ -4,7 +4,7 @@ import axios from 'axios';
 const URL = 'http://localhost:5000/';
 import apiClient from './api_client';
 import saveToken from './local_storage';
-//import userModule from './user';
+import userModule from './user';
 import router from '../router';
 
 Vue.use(Vuex)
@@ -16,7 +16,6 @@ export default new Vuex.Store({
     users: [],
     posts: [],
     comments: [],
-    selectedPost: {},
     logged: false,
     loading: true,
     inputType: '',
@@ -32,8 +31,7 @@ export default new Vuex.Store({
     loadingState: state => state.loading,
     isLogged: state => state.logged,
     getInputType: state => state.inputType,
-    getErrors: state => state.errors,
-    getSelectedPost: state => state.selectedPost
+    getErrors: state => state.errors
   },  
 
   mutations: {
@@ -41,25 +39,8 @@ export default new Vuex.Store({
 
     setUser: (state, user) => (state.user = user),
 
-    updateUser (state, user) {
-/*       const objIndex = state.users.map(function(x) {return x._id; }).indexOf(user._id);
-      console.log(objIndex)
-      Object.assign(state.users[objIndex], { username: user.username,
-                                              email: user.email, 
-                                              first_name: user.first_name, 
-                                              last_name: user.last_name, 
-                                              password: user.password }); */
-      state.user = user;
-    },
-
     updatePosts(state, posts) {
       state.posts = posts;
-    },
-
-    updatePost (state, post) {
-      const objIndex = state.posts.map(function(x) {return x._id; }).indexOf(post._id);
-      Object.assign(state.posts[objIndex], { title: post.title, text: post.text, user: post.user });
-      state.selectedPost = {};
     },
 
     updateComments(state, comments) {
@@ -75,10 +56,6 @@ export default new Vuex.Store({
     addComment (state, comment) {
       const objIndex = state.posts.map(function(x) {return x._id; }).indexOf(comment._id);
       Object.assign(state.posts[objIndex], { comments: comment.comments });
-    },
-
-    setSelectedPost(state, post) {
-      state.selectedPost = post;
     },
 
     changeLoadingState(state, loading) {
@@ -216,49 +193,12 @@ export default new Vuex.Store({
         })
     },
 
-    async userUpdate({commit}, userData) {
-      await apiClient.put(URL + 'users/' + userData._id, userData)
-        .then((response) => {
-          commit('updateUser', response.data);
-          router.push("/");
-        })
-        .catch((error) => {
-          if (error.response) {
-            commit('setErrors', error.response.data.error);
-          } else {
-            commit('setErrors', error);
-          }
-        })
-    },
-
-    postType({ commit }, post) {
-      commit('setSelectedPost', post);
-      router.push("/post-add");
-    },
-
-    async postUpdate({commit}, postData) {
-      await apiClient.put(URL + 'posts/' + postData._id, postData)
-        .then((response) => {
-          console.log(response);
-          commit('updatePost', response.data);
-          router.push("/");
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response)
-            commit('setErrors', error.response.data.error);
-          } else {
-            commit('setErrors', error);
-          }
-        })
-    },
-
     clearErrors({ commit }) {
       commit('setErrors', [])
     }
   },
 
   modules: {
-    //userModule
+    userModule
   }
 })
