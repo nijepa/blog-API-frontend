@@ -24,8 +24,11 @@
           }"
         />
         <!-- <textarea @focus="clearErrors" v-model="postInput.text" name="text" class="cool-link" placeholder="pls enter content" required></textarea> -->
-        <button type="submit" class="btn-sub" value="Log In" >Save</button>
-        <button @click="cancelAdd()" class="btn-sub" value="Log In" >Cancel</button>
+        <div class="">
+          <button type="submit" class="btn__sub" value="Log In" >Save</button>
+          <button @click="cancelAdd()" class="btn__sub" value="Log In" >Cancel</button>
+        </div>
+        
         <p class="err" v-if="getErrors.length != 0">{{ getErrors }}</p>
       </form>
     <!-- </transition> -->

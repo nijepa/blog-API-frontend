@@ -9,7 +9,7 @@
       <h1>{{ post.title }}</h1>
       <p v-html="post.text"></p>
       <div v-if="isLogged" class="">
-        <button v-if="loggedUser._id === post.user._id" @click="editPost(post)" type="submit" class="btn-sub">Edit Post</button>
+        <button v-if="loggedUser._id === post.user._id" @click="editPost(post)" type="submit" class="btn__sub">Edit Post</button>
       </div>
       <hr>
       <div class="comments">
@@ -27,7 +27,7 @@
       <!-- <Comments /> -->
       <!-- <button @click="addComment" class="btn__comment" v-if="isLogged && !enterComment">Add Comment</button> -->
       <div v-if="isLogged" class="add__comment">
-        <button @click="newComment(commentInput, post._id)" type="submit" class="btn-sub">Add Comment</button>
+        <button @click="newComment(commentInput, post._id)" type="submit" class="btn__sub">Add Comment</button>
 <!--         <editor v-model="commentInput.text" name="comment"
           api-key="2guq5wvvizaji79tec92yznr95h8nlnk69m7n7qx7k2lxdpl"
           :init="{
@@ -114,32 +114,32 @@
     grid-template-columns: 1fr 1fr 1fr;
     min-width: 414px;
   }
-  @media (max-width: 1440px) {
-    .posts {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  @media (max-width: 810px) {
-    .posts {
-      grid-template-columns: 1fr;
-    }
-  }
+
   .post {
     text-align: left;
-    box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 3px 0px rgba(56, 100, 52, 0.75);
     margin: 5px ;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid grey;
+    display: block;
+    line-height: 1.2em;
+    font-size: 90%;
   }
+
   .post__heading {
     color: rgb(114, 114, 114);
     /* border-bottom: 1px solid black; */
-    background: powderblue;
+    background: #c2f0bc;
     padding: 2px 5px;
     display: inline;
     border-radius: 5px;
     font-size: 12px;
+  }
+
+  .post p {
+    margin: 0;
+    margin-top: 1em;
   }
 /*   .btn__comment {
     cursor: pointer;
@@ -163,6 +163,7 @@
     margin-top: 10px;
     padding: 10px;
   }
+
   .comments {
     display: grid;
     justify-content: space-evenly;
@@ -179,4 +180,14 @@
     transition: opacity 1s ease-out; 
   }
 
+  @media (max-width: 1440px) {
+    .posts {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 810px) {
+    .posts {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

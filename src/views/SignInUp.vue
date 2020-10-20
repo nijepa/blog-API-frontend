@@ -13,7 +13,7 @@
       </form>
       <div v-else class="btn-oposite">
         <p>Already sign up ?</p>
-        <button @click="changeType('login')" class="btn-sub">Log In</button>
+        <button @click="changeType('login')" class="btn__sub">Log In</button>
       </div>
         </transition>
     </div>
@@ -35,7 +35,7 @@
       </form>
       <div v-else class="btn-oposite">
         <p>Don't have username ?</p>
-        <button @click="changeType('signup')" class="btn-sub">Sign Up</button>
+        <button @click="changeType('signup')" class="btn__sub">Sign Up</button>
       </div>
       </transition>
     </div>
@@ -89,10 +89,38 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   input, button, textarea {
     font-family: 'Chewy', cursive;
   }
+
+  .cool-link {
+    background: #fff;
+    color: #525865;
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+    box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
+    font-family: inherit;
+    font-size: 1em;
+    line-height: 1.45;
+    outline: none;
+    padding: 0.6em 1.45em 0.7em;
+    -webkit-transition: .18s ease-out;
+    -moz-transition: .18s ease-out;
+    -o-transition: .18s ease-out;
+    transition: .18s ease-out;
+    margin-bottom: 1em;
+  }
+  .cool-link:hover, .cool-link:focus {
+    color: #4b515d;
+    border: 1px solid #B8B6B6;
+    box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px rgba(0, 0, 0, 0.2);
+  }
+/* .cool-link:focus {
+  color: #4b515d;
+  border: 1px solid #B8B6B6;
+  box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px rgba(0, 0, 0, 0.2);
+} */
   .wrapper {
     display: grid;
     grid-template-columns: auto auto;
@@ -110,47 +138,51 @@ export default {
     align-items: center;
     align-self: center;
   }
-  .cool-link {
+/*   .cool-link {
     display: inline-block;
-    /* color: #000; */
     background-color: transparent;
-    border-bottom: 3px solid transparent;
-    border-top: 3px solid transparent;
+    border-left: 1px solid transparent;
+    border-top: 1px solid transparent;
     text-align: center;
     margin-bottom: 10px;
-    border-left: 1px solid #2c3e50;
+    border-bottom: 1px solid #2c3e50;
     border-right: 1px solid #2c3e50;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 2px 2px transparent;
   }
   .cool-link:hover {
-    border: 3px solid indigo;
+    border: 1px solid indigo;
     transition: border .9s; 
+    box-shadow: 2px 2px #888888;
   }
   .cool-link:focus {
-    border: 3px solid indigo;
-    /* transition: border-bottom .9s;  */
-  }
-  .btn-sub {
-    cursor: pointer;
+    border: 1px solid indigo;
+    box-shadow: 2px 2px #888888;
+  } */
+  .btn__sub {
     text-transform: uppercase;
     border: none;
     font-weight: bolder;
-    border-bottom: 5px solid transparent;
-    border-left: 2px solid #2c3e50;
-    border-right: 2px solid #2c3e50;
-    border-top: 5px solid transparent;
+    border-left: 2px solid transparent;
+    border-bottom: 2px inset rgb(3, 168, 105);
+    border-right: 2px inset rgb(3, 168, 105);
+    border-top: 2px solid transparent;
     border-radius: 50%;
     background: transparent;
     justify-self: center;
-    padding: 5px;
+    padding: 1em;
+    margin: .5em;
     cursor: pointer;
+    box-shadow: 2px 2px transparent;
+    transition: .9s ease-out;
   }
-  .btn-sub:hover {
-    border-bottom: 5px solid indigo;
-    border-top: 5px solid indigo;
-    color: indigo;
-    transition: border .9s;
+  .btn__sub:hover {
+    border-bottom: 2px inset rgb(1, 85, 53);
+    border-top: 2px inset rgb(1, 85, 53);
+    border-right: 2px inset rgb(1, 85, 53);
+    color: rgb(1, 85, 53);
+    box-shadow: 1px 1px #B8B6B6;
   }
   .err {
     color: crimson;
