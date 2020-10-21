@@ -8,7 +8,7 @@
         <input @focus="clearErrors" v-model="loginInput.email" type="email" name="email" class="cool-link" placeholder="pls enter e-mail" required>
         <!-- <label for="password">Password</label> -->
         <input @focus="clearErrors" v-model="loginInput.password" type="password" name="password" class="cool-link" placeholder="pls enter password" required>
-        <button type="submit" class="btn-sub" value="Log In" >Log In</button>
+        <button type="submit" class="btn__sub" value="Log In" >Log In</button>
         <p class="err" v-if="getErrors.length != 0">{{ getErrors }}</p>
       </form>
       <div v-else class="btn-oposite">
@@ -30,7 +30,7 @@
         <input @focus="clearErrors" v-model="signupInput.first_name" type="text" name="first_name" class="cool-link" placeholder="first name" required>
         <!-- <label for="last_name">Last Name</label> -->
         <input @focus="clearErrors" v-model="signupInput.last_name" type="text" name="last_name" class="cool-link" placeholder="last name" required>
-        <button type="submit" class="btn-sub">Sign Up</button>
+        <button type="submit" class="btn__sub">Sign Up</button>
         <p class="err" v-if="getErrors.length != 0">{{ getErrors }}</p>
       </form>
       <div v-else class="btn-oposite">

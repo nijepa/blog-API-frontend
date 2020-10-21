@@ -6,7 +6,8 @@
     <transition-group name="fade"  v-else class="posts">
     <div v-for="post in allPosts" :key="post._id" class="post">
       <p class="post__heading">By: {{ post.user.name }} @ {{ post.createdAt | formatDate }} </p>
-      <h1>{{ post.title }}</h1>
+      <h1 class="title__text">{{ post.title }}</h1>
+      <hr class="title__line">
       <p v-html="post.text"></p>
       <div v-if="isLogged" class="">
         <button v-if="loggedUser._id === post.user._id" @click="editPost(post)" type="submit" class="btn__sub">Edit Post</button>
@@ -27,7 +28,8 @@
       <!-- <Comments /> -->
       <!-- <button @click="addComment" class="btn__comment" v-if="isLogged && !enterComment">Add Comment</button> -->
       <div v-if="isLogged" class="add__comment">
-        <button @click="newComment(commentInput, post._id)" type="submit" class="btn__sub">Add Comment</button>
+        <button @click="newComment(commentInput, post._id)" type="submit" 
+                class="btn__sub btn__com">Add Comment</button>
 <!--         <editor v-model="commentInput.text" name="comment"
           api-key="2guq5wvvizaji79tec92yznr95h8nlnk69m7n7qx7k2lxdpl"
           :init="{
@@ -45,7 +47,9 @@
               bullist numlist outdent indent | removeformat | help | fontsizeselect fontselect'
           }"
         /> -->
-        <textarea v-model="commentInput.text" name="comment" class="cool-link" placeholder="enter comment" rows="5" cols="25" required></textarea>
+        <textarea v-model="commentInput.text" name="comment" class="cool-link" 
+                  placeholder="enter comment" rows="3" cols="10" required>
+        </textarea>
       </div>
       <div v-else class="add__comment">
         <p>Please <router-link class="fromLeft" to="/login">Log In</router-link> to add comments.</p>
@@ -117,19 +121,31 @@
 
   .post {
     text-align: left;
-    box-shadow: 0px 2px 3px 0px rgba(56, 100, 52, 0.75);
+    /* box-shadow: 0px 2px 3px 0px rgba(56, 100, 52, 0.75); */
     margin: 5px ;
     padding: 10px;
-    border-radius: 5px;
-    border: 1px solid grey;
+    /* border-radius: 5px; */
+    /* border: 1px solid grey; */
+/*     border-left: 2px solid green;
+    border-bottom: 2px solid green; */
     display: block;
     line-height: 1.2em;
     font-size: 90%;
+background-position:  0 0, 0 0, 100% 0, 0 100%;
+    background-size: 3px 100%, 100% 3px, 3px 100% , 100% 3px;
+    background-repeat: no-repeat;
+    background-image:
+        linear-gradient(0deg, transparent 20%, green 100%, green 50%, transparent 50%), 
+        linear-gradient(90deg, transparent 20%, green 100%, green 50%, transparent 50%), 
+        linear-gradient(180deg, transparent 20%, green 100%, green 50%, transparent 50%), 
+        linear-gradient(270deg, transparent 20%, green 100%, green 50%, transparent 50%) 
+    ;
+
   }
 
   .post__heading {
     color: rgb(114, 114, 114);
-    /* border-bottom: 1px solid black; */
+    /* bordrgba(114, 114, 114, 0.103)id black; */
     background: #c2f0bc;
     padding: 2px 5px;
     display: inline;
@@ -140,6 +156,10 @@
   .post p {
     margin: 0;
     margin-top: 1em;
+  }
+
+  .title__text {
+    margin-bottom: .3em;
   }
 /*   .btn__comment {
     cursor: pointer;
@@ -172,6 +192,10 @@
     align-items: baseline;
   }
 
+  .btn__com {
+    font-size: .8em;
+  }
+
   .fade-enter { /* starting style */
     opacity: 0;
   }
@@ -188,6 +212,13 @@
   @media (max-width: 810px) {
     .posts {
       grid-template-columns: 1fr;
+      
+    }
+  }
+  @media (max-width: 360px) {
+    .posts {
+      grid-template-columns: auto;
+      max-width: 350px;
     }
   }
 </style>

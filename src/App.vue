@@ -22,6 +22,9 @@
 </script>
 
 <style lang="scss">
+:root {
+  --clr-border: #333;
+}
   #app {
     font-family: 'Chewy', cursive;
     -webkit-font-smoothing: antialiased;
